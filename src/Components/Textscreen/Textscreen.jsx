@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { API_URL } from "../../Common/api";
+import SubmitPage from "../SubmitPage/SubmitPage";
+import "./Textscreen.css";
 
 const Textscreen = () => {
   const [para, setPara] = useState([]);
@@ -8,12 +10,14 @@ const Textscreen = () => {
   const [accuracy, setAccuracy] = useState(0);
   const [correctLetters, setCorrectLetters] = useState(0);
   const [incorrectLetters, setIncorrectLetters] = useState(0);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(60);
   const [isTimerOn, setisTimerOn] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const regex = new RegExp(
     "[ A-Za-z0-9!@#$%^&*()-_=+`~;:,.<>/?|\\'\"\\[\\]\\{\\}]"
   );
+
   const handleInput = (e) => {
     const inputStr = e.target.value;
     if (!regex.test(inputStr) || inputStr.length < currentText.length) return;
@@ -37,7 +41,7 @@ const Textscreen = () => {
     setPara(paraData);
     setCorrectLetters(correctLetters);
     setIncorrectLetters(textLength - correctLetters);
-    setAccuracy((correctLetters * 100) / (textLength || 1));
+    setAccuracy(((correctLetters * 100) / (textLength || 1)).toFixed(2));
   };
 
   const fetchDataFromApi = () => {
@@ -64,7 +68,6 @@ const Textscreen = () => {
   useEffect(() => {
     let interval;
     if (isTimerOn) {
-      console.log(`Timer is on`);
       interval = setInterval(
         () => setTimer((currTimer) => currTimer - 1),
         1000
@@ -79,40 +82,53 @@ const Textscreen = () => {
 
   return (
     <>
-      <div className="textAreaContainer">
-        <div className="contentArea">
-          <p>Accuracy: {accuracy}</p>
-          <p>Correct letters: {correctLetters}</p>
-          <p>Incorrect Letters: {incorrectLetters}</p>
-          <span>{timer}</span>
-          <p>
-            {para.map((item, index) => (
-              <span
-                key={index}
-                style={{
-                  color: `${
-                    item.isCorrect === true
-                      ? "green"
-                      : item.isCorrect === false
-                      ? "red"
-                      : "black"
-                  }`,
-                }}
-              >
-                {item.letter}
-              </span>
-            ))}
-          </p>
+      {!buttonClicked ? (
+        <div className="container">
+          <div className={!timer ? "timerCompleted" : "timer"}>
+            00:{timer < 10 ? `0${timer}` : timer}
+          </div>
+          <div className="displayedPara">
+            <p>
+              {para.map((item, index) => (
+                <span
+                  key={index}
+                  style={{
+                    color: `${
+                      item.isCorrect === true
+                        ? "black"
+                        : item.isCorrect === false
+                        ? "red"
+                        : "grey"
+                    }`,
+                  }}
+                >
+                  {item.letter}
+                </span>
+              ))}
+            </p>
+          </div>
+
+          <textarea
+            rows={5}
+            cols={110}
+            type="text"
+            className="textInput"
+            onChange={handleInput}
+            value={currentText}
+            readOnly={!timer ? true : false}
+          />
+
+          <div className="submitButton" onClick={() => setButtonClicked(true)}>
+            Submit
+          </div>
         </div>
-        <textarea
-          rows={10}
-          type="text"
-          className="textInput"
-          onChange={handleInput}
-          value={currentText}
+      ) : (
+        <SubmitPage
+          accuracy={accuracy}
+          correctLetters={correctLetters}
+          incorrectLetters={incorrectLetters}
         />
-      </div>
-      <div className="accuracyDisplayContainer">{}</div>
+      )}
     </>
   );
 };
