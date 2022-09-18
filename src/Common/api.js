@@ -1,1 +1,1 @@
-export const API_URL = "http://metaphorpsum.com/paragraphs/3";
+export const API_URL = "http://metaphorpsum.com/paragraphs/1";

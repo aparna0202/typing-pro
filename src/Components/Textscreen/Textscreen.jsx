@@ -6,13 +6,13 @@ import "./Textscreen.css";
 
 const Textscreen = () => {
   const [para, setPara] = useState([]);
+  const [totalKeystrokes, setTotalKeystrokes] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [accuracy, setAccuracy] = useState(0);
   const [correctLetters, setCorrectLetters] = useState(0);
   const [incorrectLetters, setIncorrectLetters] = useState(0);
   const [timer, setTimer] = useState(60);
   const [isTimerOn, setisTimerOn] = useState(false);
-  const [buttonClicked, setButtonClicked] = useState(false);
 
   const regex = new RegExp(
     "[ A-Za-z0-9!@#$%^&*()-_=+`~;:,.<>/?|\\'\"\\[\\]\\{\\}]"
@@ -30,35 +30,45 @@ const Textscreen = () => {
     paraData[textLength - 1].isCorrect =
       paraData[textLength - 1].letter === inputStr.slice(-1) ? true : false;
 
-    const correctLetters = paraData
-      .slice(0, textLength)
-      .reduce(
-        (count, item) => (item.isCorrect === true ? count + 1 : count),
-        0
-      );
-
+    const currentCorrectLetters =
+      paraData[textLength - 1].isCorrect === true
+        ? correctLetters + 1
+        : correctLetters;
+    setTotalKeystrokes((currentKeystrokes) => currentKeystrokes + 1);
     setCurrentText(inputStr);
     setPara(paraData);
-    setCorrectLetters(correctLetters);
-    setIncorrectLetters(textLength - correctLetters);
-    setAccuracy(((correctLetters * 100) / (textLength || 1)).toFixed(2));
+    setCorrectLetters(currentCorrectLetters);
+    setIncorrectLetters(totalKeystrokes - currentCorrectLetters);
+    setAccuracy(
+      ((currentCorrectLetters * 100) / (totalKeystrokes || 1)).toFixed(2)
+    );
+
+    if (para.length === textLength) {
+      fetchDataFromApi();
+      setCurrentText("");
+    }
   };
 
   const fetchDataFromApi = () => {
     fetch(API_URL)
       .then((response) => response.text())
-      .then((text) =>
+      .then((text) => {
+        return text;
+      })
+      .then((text) => {
         setPara(
           text.split("").map((item) => {
             return { letter: item, isCorrect: null };
           })
-        )
-      );
+        );
+        return text;
+      });
   };
 
   useEffect(() => {
     fetchDataFromApi();
   }, []);
+
   useEffect(() => {
     if (timer === 0) {
       setisTimerOn(false);
@@ -82,7 +92,7 @@ const Textscreen = () => {
 
   return (
     <>
-      {!buttonClicked ? (
+      {timer ? (
         <div className="container">
           <div className={!timer ? "timerCompleted" : "timer"}>
             00:{timer < 10 ? `0${timer}` : timer}
@@ -117,10 +127,6 @@ const Textscreen = () => {
             value={currentText}
             readOnly={!timer ? true : false}
           />
-
-          <div className="submitButton" onClick={() => setButtonClicked(true)}>
-            Submit
-          </div>
         </div>
       ) : (
         <SubmitPage

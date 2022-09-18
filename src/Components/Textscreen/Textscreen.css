@@ -48,6 +48,8 @@
   padding: 20px;
 
   border-radius: 10px;
+
+  /* user-select: none; */
 }
 
 .displayedPara p {
@@ -61,24 +63,4 @@
   padding: 20px;
   border-radius: 10px;
   border: none;
-}
-.submitButton {
-  height: 30px;
-  width: 100px;
-
-  background-color: white;
-
-  margin-top: 20px;
-  border-radius: 7px;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 7px;
-}
-.submitButton:hover {
-  background-color: rgb(26, 96, 124);
-  color: #fff;
-  transition: all 0.3s ease-in-out;
 }
