@@ -103,6 +103,8 @@ const Textscreen = () => {
                 <span
                   key={index}
                   style={{
+                    backgroundColor:
+                      index === currentText.length ? "red" : "inherit",
                     color: `${
                       item.isCorrect === true
                         ? "black"

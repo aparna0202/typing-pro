@@ -2,10 +2,7 @@ import React from "react";
 import "./SubmitPage.css";
 
 const SubmitPage = ({ accuracy, correctLetters, incorrectLetters }) => {
-  const speed = (
-    (correctLetters + incorrectLetters) / 5 -
-    incorrectLetters
-  ).toFixed(2);
+  const speed = Math.round(correctLetters / 5);
   return (
     <div className="SubmitPage">
       <div className="textContainer">
