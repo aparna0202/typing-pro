@@ -3,6 +3,8 @@ import { useState } from "react";
 import { API_URL } from "../../Common/api";
 import SubmitPage from "../SubmitPage/SubmitPage";
 import "./Textscreen.css";
+const track1 = require("../../assets/audio/60sectimer.mp3");
+const track2 = require("../../assets/audio/timeover.mp3");
 
 const Textscreen = () => {
   const [para, setPara] = useState([]);
@@ -13,6 +15,8 @@ const Textscreen = () => {
   const [incorrectLetters, setIncorrectLetters] = useState(0);
   const [timer, setTimer] = useState(60);
   const [isTimerOn, setisTimerOn] = useState(false);
+  const timerStarts = new Audio(track1);
+  const timerStops = new Audio(track2);
 
   const regex = new RegExp(
     "[ A-Za-z0-9!@#$%^&*()-_=+`~;:,.<>/?|\\'\"\\[\\]\\{\\}]"
@@ -22,7 +26,9 @@ const Textscreen = () => {
     const inputStr = e.target.value;
     if (!regex.test(inputStr) || inputStr.length < currentText.length) return;
 
-    if (currentText.length === 0) setisTimerOn(true);
+    if (currentText.length === 0) {
+      setisTimerOn(true);
+    }
 
     const paraData = para;
     const textLength = inputStr.length;
@@ -48,7 +54,6 @@ const Textscreen = () => {
       setCurrentText("");
     }
   };
-
   const fetchDataFromApi = () => {
     fetch(API_URL)
       .then((response) => response.text())
@@ -69,9 +74,15 @@ const Textscreen = () => {
     fetchDataFromApi();
   }, []);
 
+  // useEffect(() => {
+  //   .load();
+  // }, []);
+
   useEffect(() => {
     if (timer === 0) {
       setisTimerOn(false);
+      timerStarts.pause();
+      timerStops.play();
     }
   }, [timer]);
 
@@ -104,7 +115,9 @@ const Textscreen = () => {
                   key={index}
                   style={{
                     backgroundColor:
-                      index === currentText.length ? "red" : "inherit",
+                      index === currentText.length
+                        ? "rgb(63, 184, 231)"
+                        : "inherit",
                     color: `${
                       item.isCorrect === true
                         ? "black"
