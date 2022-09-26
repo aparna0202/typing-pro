@@ -1,21 +1,25 @@
-.gifContainer {
-  width: 200px;
-  height: 150px;
-}
-.gifContainer img {
-  width: 100%;
-  height: 100%;
-}
 .textContainer {
-  font-size: 16px;
+  font-size: 24px;
   font-family: museo-sans-rounded-bold, sans-serif;
 
+  height: 740px;
+
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .textContainer h4 {
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 600;
+
+  margin-bottom: 15px;
 }
 .textContainer span {
   color: #157ba5;
+}
+.SubmitPage {
+  height: 100%;
 }

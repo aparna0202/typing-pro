@@ -13,14 +13,35 @@ const Textscreen = () => {
   const [accuracy, setAccuracy] = useState(0);
   const [correctLetters, setCorrectLetters] = useState(0);
   const [incorrectLetters, setIncorrectLetters] = useState(0);
-  const [timer, setTimer] = useState(60);
+  const [speed, setSpeed] = useState(0);
+  const [timer, setTimer] = useState(6);
   const [isTimerOn, setisTimerOn] = useState(false);
   const timerStarts = new Audio(track1);
   const timerStops = new Audio(track2);
 
+  let data = {
+    correctLetters: correctLetters,
+    incorrectLetters: incorrectLetters,
+    accuracy: accuracy,
+    speed: speed,
+  };
+
   const regex = new RegExp(
     "[ A-Za-z0-9!@#$%^&*()-_=+`~;:,.<>/?|\\'\"\\[\\]\\{\\}]"
   );
+
+  const pushData = () => {
+    let existingData = JSON.parse(localStorage.getItem("history"));
+
+    console.log(typeof existingData);
+    if (existingData) {
+      existingData.push(data);
+    } else {
+      existingData = [];
+      existingData.push(data);
+    }
+    localStorage.setItem("history", JSON.stringify(existingData));
+  };
 
   const handleInput = (e) => {
     const inputStr = e.target.value;
@@ -28,6 +49,12 @@ const Textscreen = () => {
 
     if (currentText.length === 0) {
       setisTimerOn(true);
+    }
+    if (totalKeystrokes === 0) {
+      timerStarts.play();
+    }
+    if (timer === 1) {
+      timerStarts.pause();
     }
 
     const paraData = para;
@@ -48,6 +75,7 @@ const Textscreen = () => {
     setAccuracy(
       ((currentCorrectLetters * 100) / (totalKeystrokes || 1)).toFixed(2)
     );
+    setSpeed(Math.round(correctLetters / 5));
 
     if (para.length === textLength) {
       fetchDataFromApi();
@@ -74,15 +102,11 @@ const Textscreen = () => {
     fetchDataFromApi();
   }, []);
 
-  // useEffect(() => {
-  //   .load();
-  // }, []);
-
   useEffect(() => {
     if (timer === 0) {
-      setisTimerOn(false);
-      timerStarts.pause();
       timerStops.play();
+      setisTimerOn(false);
+      pushData();
     }
   }, [timer]);
 
@@ -112,6 +136,7 @@ const Textscreen = () => {
             <p>
               {para.map((item, index) => (
                 <span
+                  className="letter"
                   key={index}
                   style={{
                     backgroundColor:
@@ -135,7 +160,7 @@ const Textscreen = () => {
 
           <textarea
             rows={5}
-            cols={110}
+            cols={140}
             type="text"
             className="textInput"
             onChange={handleInput}
