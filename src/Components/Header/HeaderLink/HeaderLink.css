@@ -1,0 +1,15 @@
+.headerLink {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+
+  color: rgb(0, 124, 172);
+
+  padding-right: 30px;
+}
+.headerLink:hover {
+  color: white;
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+}

@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.Header {
+  background-color: #fff;
+  height: 7vh;
+  font-family: "Poppins", sans-serif;
+
+  position: sticky;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0px 15px;
+}
+.Header:hover {
+  background-color: aqua;
+  color: white;
+
+  transition: all 0.3s ease-in-out;
+
+  cursor: pointer;
+}
+.logo {
+  padding-right: 86px;
+  font-size: 20px;
+  font-weight: 800;
+}
+.logo span {
+  background-color: aqua;
+  color: #fff;
+  padding: 0px 5px;
+  height: 35px;
+}
