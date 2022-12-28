@@ -68,7 +68,7 @@
   border-radius: 10px;
   border: none;
   box-shadow: 5px 10px 8px 10px #888888;
-  font-size: 20px;
+  font-size: 16px;
 }
 .textInput:focus {
   outline: none;
@@ -97,5 +97,6 @@
   }
   .textInput {
     width: 1000px;
+    font-size: 20px;
   }
 }

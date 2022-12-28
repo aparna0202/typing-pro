@@ -2,7 +2,7 @@
   font-size: 18px;
   font-family: museo-sans-rounded-bold, sans-serif;
 
-  height: 500px;
+  height: 450px;
 
   text-align: center;
 
@@ -24,8 +24,8 @@
 
 @media screen and (min-width: 768px) {
   .textContainer {
+    height: 680px;
     font-size: 24px;
-    height: 740px;
     padding: 0px 0px;
   }
   .textContainer h4 {

@@ -166,6 +166,7 @@ const Textscreen = () => {
             onChange={handleInput}
             value={currentText}
             readOnly={!timer ? true : false}
+            spellCheck="false"
           />
         </div>
       ) : (
