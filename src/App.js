@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/home" element={<Textscreen />} />
+        <Route path="/" element={<Textscreen />} />
         <Route path="/history" element={<HistoryPage />} />
       </Routes>
       <Footer />

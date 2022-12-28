@@ -1,4 +1,3 @@
-import React from "react";
 import "./HistoryPage.css";
 
 const HistoryPage = () => {
@@ -6,19 +5,23 @@ const HistoryPage = () => {
   return (
     <div className="HistoryPage">
       <h4>Previous Scores:-</h4>
-      <div className="scores">
+      <table className="results">
+        <tr>
+          <th>Accuracy(%)</th>
+          <th>Speed(W/M)</th>
+          <th>Correct Letters</th>
+          <th>Incorrect Letters</th>
+        </tr>
+
         {history.map((data) => (
-          <ul>
-            <li>Correct Letters: {data.correctLetters}</li>
-            <li>
-              Incorrect Letters:{" "}
-              {data.incorrectLetters < 0 ? "0" : `${data.incorrectLetters}`}
-            </li>
-            <li>Acuracy: {data.accuracy}</li>
-            <li>Speed: {data.speed > 0 ? `${data.speed}` : "0"}</li>
-          </ul>
+          <tr>
+            <td>{data.accuracy}</td>
+            <td>{data.speed}</td>
+            <td>{data.correctLetters}</td>
+            <td>{data.incorrectLetters}</td>
+          </tr>
         ))}
-      </div>
+      </table>
     </div>
   );
 };

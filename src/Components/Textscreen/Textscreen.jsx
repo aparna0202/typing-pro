@@ -14,7 +14,7 @@ const Textscreen = () => {
   const [correctLetters, setCorrectLetters] = useState(0);
   const [incorrectLetters, setIncorrectLetters] = useState(0);
   const [speed, setSpeed] = useState(0);
-  const [timer, setTimer] = useState(6);
+  const [timer, setTimer] = useState(60);
   const [isTimerOn, setisTimerOn] = useState(false);
   const timerStarts = new Audio(track1);
   const timerStops = new Audio(track2);
@@ -160,7 +160,7 @@ const Textscreen = () => {
 
           <textarea
             rows={5}
-            cols={140}
+            cols={80}
             type="text"
             className="textInput"
             onChange={handleInput}
@@ -173,6 +173,7 @@ const Textscreen = () => {
           accuracy={accuracy}
           correctLetters={correctLetters}
           incorrectLetters={incorrectLetters}
+          speed={speed}
         />
       )}
     </>

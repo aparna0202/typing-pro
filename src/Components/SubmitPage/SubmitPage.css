@@ -1,8 +1,8 @@
 .textContainer {
-  font-size: 24px;
+  font-size: 18px;
   font-family: museo-sans-rounded-bold, sans-serif;
 
-  height: 740px;
+  height: 500px;
 
   text-align: center;
 
@@ -10,9 +10,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0px 10px;
 }
 .textContainer h4 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
 
   margin-bottom: 15px;
@@ -20,6 +21,14 @@
 .textContainer span {
   color: #157ba5;
 }
-.SubmitPage {
-  height: 100%;
+
+@media screen and (min-width: 768px) {
+  .textContainer {
+    font-size: 24px;
+    height: 740px;
+    padding: 0px 0px;
+  }
+  .textContainer h4 {
+    font-size: 28px;
+  }
 }

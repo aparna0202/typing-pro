@@ -1,7 +1,42 @@
 .HistoryPage {
-  height: 740px;
+  height: 400px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 20px;
+  padding: 50px 0px;
+}
+.HistoryPage h4 {
+  font-size: 20px;
+}
+.results {
+  width: 300px;
+}
+
+.results,
+th,
+tr,
+td {
+  border: 1px solid black;
+}
+.results th {
+  width: 80px;
+}
+.results td {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .HistoryPage {
+    height: 600px;
+    padding: 50px;
+  }
+  .results {
+    width: 800px;
+  }
+  .results th {
+    width: 200px;
+  }
+  .HistoryPage h4 {
+    font-size: 24px;
+  }
 }

@@ -1,6 +1,7 @@
 .container {
-  background-color: rgb(63, 184, 231);
-  background-image: url("../../assets/bg.jpg");
+  background-color: white;
+  height: 600px;
+  /* background-image: url("../../assets/bg.jpg"); */
   background-repeat: no-repeat, repeat;
   background-size: cover;
 
@@ -8,18 +9,17 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 73vh;
 
-  padding: 100px;
+  padding: 50px;
 }
 
 .timer {
   background-color: #fff;
 
-  width: 120px;
-  height: 50px;
+  width: 80px;
+  height: 40px;
 
-  font-size: 40px;
+  font-size: 30px;
   font-family: "Times New Roman", Times, serif;
 
   display: flex;
@@ -33,10 +33,10 @@
   background-color: #fff;
   color: red;
 
-  width: 140px;
-  height: 60px;
+  width: 100px;
+  height: 40px;
 
-  font-size: 40px;
+  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,18 +51,51 @@
   padding: 20px;
 
   border-radius: 10px;
-
+  box-shadow: 5px 10px 8px 10px #888888;
   /* user-select: none; */
 }
 
 .displayedPara p {
-  width: 1000px;
+  width: 200px;
 }
 .letter {
-  font-size: 28px;
+  font-size: 20px;
 }
 .textInput {
+  width: 200px;
+  height: 70px;
   padding: 20px;
   border-radius: 10px;
   border: none;
+  box-shadow: 5px 10px 8px 10px #888888;
+  font-size: 20px;
+}
+.textInput:focus {
+  outline: none;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    height: 500px;
+    padding: 100px;
+  }
+  .timer {
+    width: 120px;
+    height: 50px;
+
+    font-size: 40px;
+  }
+  .timerCompleted {
+    width: 140px;
+    height: 60px;
+    font-size: 40px;
+  }
+  .displayedPara p {
+    width: 1000px;
+  }
+  .letter {
+    font-size: 28px;
+  }
+  .textInput {
+    width: 1000px;
+  }
 }
