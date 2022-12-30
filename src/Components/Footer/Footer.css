@@ -1,7 +1,9 @@
 .Footer {
-  background-color: rgb(0, 240, 240);
+  background-color: #0e356e;
   height: 150px;
-  color: rgb(0, 124, 172);
+  color: white;
+
+  font-family: "Poppins", sans-serif;
 
   display: flex;
   flex-direction: column;

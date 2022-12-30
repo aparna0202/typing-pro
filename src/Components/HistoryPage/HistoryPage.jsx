@@ -5,7 +5,7 @@ const HistoryPage = () => {
   return (
     <div className="HistoryPage">
       <h4>Previous Scores:-</h4>
-      <table className="results">
+      <table className="results" cellSpacing={0}>
         <tr>
           <th>Accuracy(%)</th>
           <th>Speed(W/M)</th>

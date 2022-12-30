@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 .Header {
-  background-color: rgb(0, 240, 240);
+  background-color: #0e356e;
   height: 50px;
   font-family: "Poppins", sans-serif;
 
@@ -28,11 +28,13 @@
 }
 .logo {
   padding-right: 86px;
+  color: white;
   font-size: 20px;
   font-weight: 800;
+  transition: all 0.3s ease-in-out;
 }
 .logo:hover {
-  color: white;
+  color: rgb(143, 167, 219);
   transition: all 0.3s ease-in-out;
 
   cursor: pointer;

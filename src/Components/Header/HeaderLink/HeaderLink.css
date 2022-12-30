@@ -3,10 +3,11 @@
   font-size: 20px;
   font-weight: 500;
 
-  color: black;
+  color: white;
+  transition: all 0.3s ease-in-out;
 }
 .headerLink:hover {
-  color: white;
+  color: rgb(143, 167, 219);
   cursor: pointer;
 
   transition: all 0.3s ease-in-out;

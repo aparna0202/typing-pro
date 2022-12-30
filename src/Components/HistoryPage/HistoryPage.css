@@ -2,32 +2,44 @@
   height: 400px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
   padding: 50px 0px;
+  font-family: museo-sans-rounded-bold, sans-serif;
 }
 .HistoryPage h4 {
-  font-size: 20px;
+  font-size: 26px;
+  color: rgb(143, 167, 219);
 }
 .results {
   width: 300px;
-}
-
-.results,
-th,
-tr,
-td {
+  color: white;
   border: 1px solid black;
 }
+
 .results th {
   width: 80px;
+  height: 50px;
+  background: rgb(52, 30, 110);
 }
 .results td {
   text-align: center;
+  width: 80px;
+  height: 40px;
+  padding: 5px;
+  background: rgb(123, 107, 196);
 }
+/* .results tr:hover {
+  box-shadow: 2px 4px 25px 0px #c7c6c6;
 
+  cursor: pointer;
+
+  transform: scale(1.05);
+  transition: all 1s ease;
+} */
 @media screen and (min-width: 768px) {
   .HistoryPage {
-    height: 600px;
+    height: 700px;
     padding: 50px;
   }
   .results {
@@ -35,6 +47,7 @@ td {
   }
   .results th {
     width: 200px;
+    font-size: 14px;
   }
   .HistoryPage h4 {
     font-size: 24px;
