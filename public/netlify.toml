@@ -1,4 +1,5 @@
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api"
+  to = "http://metaphorpsum.com/paragraphs/1"
   status = 200
+  force = true
